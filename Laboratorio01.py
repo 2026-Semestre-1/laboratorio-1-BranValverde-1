@@ -77,36 +77,41 @@ Los párametros distancia y excepcion debe ser menor a 10 y mayor a 0.
 Los valores de inicio y fin deben ser positivos
 Si la distancia es un número negativo, el valor de fin debe ser menor a inicio
 Si la distancia es un número positivo, el valor de fin debe ser mayor a inicio
-Si excepcion es igual a cero, se debe ignorar este valor, lo contrario, todo
-número dentro de la secuencia entre inicio y ** final** sea divisible por
-esta excepcion debe omitirse en la suma
+Si excepcion es igual a cero, se debe ignorar este valor, lo contrario, todo número dentro de la secuencia entre inicio y ** final** sea divisible por esta excepcion debe omitirse en la suma
 """
 
 def sumatoriaV2 (inicio, fin, distancia, excepcion):
     
-    if not isinstance(inicio, int):
-        return "Error: inicio debe ser entero"
-    if not isinstance(fin, int):
-        return "Error: fin debe ser entero"
+    if not isinstance(inicio, int) or inicio<0:
+        return "Error: inicio debe ser entero positivo"
+    if not isinstance(fin, int) or fin<0:
+        return "Error: fin debe ser entero positivo"
     if not isinstance(distancia, int):
         return "Error: distancia debe ser entero"
     if not isinstance(excepcion, int):
         return "Error: excepcion debe ser entero"
-    if (distancia > 10) or (distancia < 0):
+    if distancia == 0 (distancia >= 10 or distancia <= -10):
         return "Error: el valor de distancia no está entre los parametros"
-    if (excepcion > 10) or (excepcion < 0):
+    if (excepcion >= 10) or (excepcion < 0):
         return "Error: el valor de excepcion no está entre los parametros"
-    if (distancia<0):
-        fin <inicio
-    elif (fin>inicio):
+    if (distancia<0) and fin>inicio:
         return "El valor de fin debe de ser menor a inicio"
-    if (distancia>0):
-        fin >inicio
-    elif (fin<inicio):
+    if (distancia>0) and fin<inicio:
         return "El valor de fin debe de ser mayor a inicio"
-        
-    
-        
+
+    return sumatoriaV2Aux (inicio, fin, distancia, excepcion)
+
+def sumatoriaV2Aux (inicio, fin, distancia, excepcion):
+    suma = 0
+    while (distancia > 0 and inicio <= fin) or  (distancia < 0 and inicio >=  fin):
+        if excepcion == 0 or inicio % excepcion != 0:
+            suma += inicio
+        inicio *= distancia
+
+    return suma
+            
+
+
     
 
 
