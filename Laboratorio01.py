@@ -52,6 +52,21 @@ def contadorDigitos (num, digito):
     if (digito > 10) or (digito < 0):
         return "Error: el valor de digito no está entre los parametros"
 
+    if num < 0:
+        num= -num
+        
+    contador= 0
+
+    while num > 0:
+        if num % 10 == digito:
+            contador += 1
+        num //= 10
+
+    return contador
+
+
+
+
 
 """
 Nombre: sumatoriaV2
